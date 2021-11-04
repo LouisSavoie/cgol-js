@@ -6,3 +6,8 @@ body {
 h1, h2 {
   text-align: center;
 }
+
+main {
+  display: flex;
+  justify-content: center;
+}
