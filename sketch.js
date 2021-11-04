@@ -1,7 +1,7 @@
 let grid;
 let cols;
 let rows;
-const resolution = 10
+const resolution = 5
 
 function createArray(cols, rows) {
   let array = new Array(cols)
