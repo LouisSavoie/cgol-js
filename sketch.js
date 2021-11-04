@@ -1,7 +1,7 @@
 let grid;
 let cols;
 let rows;
-const resolution = 20
+const resolution = 10
 
 function createArray(cols, rows) {
   let array = new Array(cols)
@@ -41,20 +41,15 @@ function draw() {
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let state = grid[i][j]
-      // if [i][j] is on edge, keep value
-      if (i == 0 || i == cols - 1 || j == 0 || j == rows - 1) {
-        next[i][j] = state
+      // count neighbors
+      let neighbors = countNeighbors(grid, i, j)
+      // rules
+      if (state == 0 && neighbors == 3) {
+        next[i][j] = 1
+      } else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
+        next[i][j] = 0
       } else {
-        // count neighbors
-        let neighbors = countNeighbors(grid, i, j)
-        // rules
-        if (state == 0 && neighbors == 3) {
-          next[i][j] = 1
-        } else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
-          next[i][j] = 0
-        } else {
-          next[i][j] = state
-        }
+        next[i][j] = state
       }
     }
   }
@@ -65,7 +60,9 @@ function countNeighbors(grid, x, y) {
   let sum = 0
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
-      sum += grid[x + i][y + j]
+      let col = (x + i + cols) % cols
+      let row = (y + j + rows) % rows
+      sum += grid[col][row]
     }
   }
   sum -= grid[x][y]
