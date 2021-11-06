@@ -2,6 +2,7 @@ let grid;
 let cols;
 let rows;
 const resolution = 5
+const fr = 10
 
 function createArray(cols, rows) {
   let array = new Array(cols)
@@ -25,6 +26,7 @@ function setup() {
 
 function draw() {
   background(0)
+  frameRate(fr)
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let x = i * resolution

@@ -8,6 +8,5 @@ Host with index.html as the entry point on either a local or web HTTP server.
 
 ## To Do
 
-- Change speed of generations.
 - Make grid swap between overwriting noew and old generations instead of creating a new array each generation.
 - Allow predetermined start states.
